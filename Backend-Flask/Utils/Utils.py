@@ -17,3 +17,12 @@ def GetFirstFace(faces, image_np_array):
     bbox = [int(b) for b in bbox]
     face = image_np_array[bbox[1]:bbox[3], bbox[0]:bbox[2]]
     return face
+
+def TransformEmotionResults(results):
+    emotions = ["Neutral", "Happiness", "Surprise", "Sadness", "Anger", "Disgust", "Fear", "Contempt"]
+    results = list(zip(emotions, results))
+    results.sort(key=lambda x: x[1], reverse=True)
+    return {
+        "Emotions": [results[0][0], results[1][0]],
+        "Scores": [round(results[0][1],3), round(results[1][1],3)]
+    }
