@@ -35,15 +35,24 @@ def obtener_datos():
         return jsonify({
                 'InsightFaceResults': {
                     'score': round(float(faces[0]['det_score']),3),
-                    'gender': "Woman" if faces[0]['gender'] == 0 else "Man" ,
+                    'gender': "Femenino" if faces[0]['gender'] == 0 else "Masculino" ,
                     'age': faces[0]['age']
                 },
                 'EmotionResults': emotion_results
             })
 
     except Exception as e:
-        return jsonify({'error': 'Ha ocurrido un error al realizar el procesamiento',
-                        "message": str(e)})
+        return jsonify({
+                'InsightFaceResults': {
+                    'score': 0,
+                    'gender': "Ninguno",
+                    'age': 0
+                },
+                'EmotionResults': {
+                    "Emotions": ["Ninguno", "Ninguno"],
+                    "Scores": [0, 0]
+                }
+            })
 
 if __name__ == '__main__':
     app.run(debug=True)

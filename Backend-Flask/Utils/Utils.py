@@ -19,7 +19,7 @@ def GetFirstFace(faces, image_np_array):
     return face
 
 def TransformEmotionResults(results):
-    emotions = ["Neutral", "Happiness", "Surprise", "Sadness", "Anger", "Disgust", "Fear", "Contempt"]
+    emotions = ["Neutral", "Felicidad", "Sorpresa", "Tristeza", "Furia", "Disgusto", "Miedo", "Desprecio"]
     results = list(zip(emotions, results))
     results.sort(key=lambda x: x[1], reverse=True)
     return {
